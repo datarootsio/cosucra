@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./src/cosucra/1_exploration"
+    ]
+}
