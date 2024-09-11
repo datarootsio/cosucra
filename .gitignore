@@ -167,3 +167,6 @@ data/processed
 plots
 .README.md
 .DS_Store
+.pkl
+notebooks/data.pkl
+notebooks/data.pkl

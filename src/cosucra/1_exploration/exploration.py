@@ -305,17 +305,17 @@ def process_and_summarize_data(data_dict, process_name, null_threshold=0.1):
         null_percentage = null_count_before / len(df)
         if (null_percentage > null_threshold).any():
             # Fill null values with median
-            cleaned_df = df.fillna(df.median(numeric_only=True))
+            # cleaned_df = df.fillna(df.median(numeric_only=True))
             cleaning_method = "filled with median"
         else:
             # Drop rows with null values
-            cleaned_df = df.dropna()
+            # cleaned_df = df.dropna()
             cleaning_method = "dropped rows with null values"
 
         # Generate and save plot
         plt.figure(figsize=(10, 6))
-        cleaned_df.iloc[:, 0] = pd.to_datetime(cleaned_df.iloc[:, 0])
-        plt.plot(cleaned_df.iloc[:, 0], cleaned_df.iloc[:, 1], label=f"{sheet_name}")
+        df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0])
+        plt.plot(df.iloc[:, 0], df.iloc[:, 1], label=f"{sheet_name}")
         plt.title(f"Data from {sheet_name}")
         plt.xlabel("Date")
         plt.ylabel("Float Values")
@@ -327,7 +327,7 @@ def process_and_summarize_data(data_dict, process_name, null_threshold=0.1):
         plt.close()
 
         # Summarize outliers
-        outliers_df = detect_outliers(cleaned_df.select_dtypes(include="number"))
+        outliers_df = detect_outliers(df.select_dtypes(include="number"))
         outlier_count_per_column = outliers_df.sum()
         total_outliers = outlier_count_per_column.sum()
 
